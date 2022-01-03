@@ -10,5 +10,7 @@
     .\env\Scripts\activate
 # Install requirements    
     pip3 install -r requirements.txt
-# Run
+# Run dev
     python3 api.py
+# Run prod
+    hypercorn api:app

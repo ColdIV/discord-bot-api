@@ -1,3 +1,4 @@
 API_TOKEN
 BOT_TOKEN
 env/*
+__pycache__/*
