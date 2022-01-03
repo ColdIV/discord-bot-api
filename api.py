@@ -39,6 +39,9 @@ async def index():
     token = (await request.form)["token"]
     message = (await request.form)["message"]
     
+    print ("[LOG] TOKEN: '" + token + "'")
+    print ("[LOG] MESSAGE: '" + message + "'")
+    
     if token != API_TOKEN:
         # Returns false on error (invalid token)
         return "false"
