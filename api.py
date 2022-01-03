@@ -1,15 +1,23 @@
 import discord
 from discord.ext import commands, tasks
-from quart import Quart
+from quart import Quart, request
 import os
 
 # Read bot token from file
-TOKEN = ""
-TOKEN_FILE = 'BOT_TOKEN'
+BOT_TOKEN = ""
+BOT_TOKEN_FILE = 'BOT_TOKEN'
 import os.path
-if os.path.isfile(TOKEN_FILE):
-    with open(TOKEN_FILE, 'r') as file:
-        TOKEN = file.read()
+if os.path.isfile(BOT_TOKEN_FILE):
+    with open(BOT_TOKEN_FILE, 'r') as file:
+        BOT_TOKEN = file.read()
+
+# Read api token from file   
+API_TOKEN = ""
+API_TOKEN_FILE = 'API_TOKEN'
+import os.path
+if os.path.isfile(API_TOKEN_FILE):
+    with open(API_TOKEN_FILE, 'r') as file:
+        API_TOKEN = file.read()     
 
 # Create bot "client"
 client = commands.Bot(command_prefix = '!')
@@ -17,15 +25,31 @@ client = commands.Bot(command_prefix = '!')
 # app = Webserver
 app = Quart(__name__)
 
-@app.route("/")
+@app.route('/api-test', methods=['GET'])
+async def apiTest():
+    return "<form action='/' method=post><input name=token value=testtoken><input name=message value=testmessage><input type=submit value=submit></form>"
+    
+@app.route('/', methods=['GET'])
+async def indexGet():
+    return "false"
+    
+@app.route('/', methods=['POST'])
 async def index():
+    # Get token and message from form
+    token = (await request.form)["token"]
+    message = (await request.form)["message"]
+    
+    if token != API_TOKEN:
+        # Returns false on error (invalid token)
+        return "false"
+   
     global client
     # Parameter is Channel ID
     channel = client.get_channel(926830382769393685)
     # Send message to channel
-    await channel.send("Hello, World!")
+    await channel.send(message)
     
-    # Returns content of website
+    # Returns true on success
     return "true"
 
 @client.event
@@ -40,4 +64,4 @@ async def on_ready():
     client.loop.create_task(app.run_task())
 
 # Run bot
-client.run(TOKEN)
+client.run(BOT_TOKEN)
