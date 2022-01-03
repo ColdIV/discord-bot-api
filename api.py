@@ -43,6 +43,7 @@ async def index():
     print ("[LOG] MESSAGE: '" + message + "'")
     
     if token != API_TOKEN:
+        print ("[LOG] ERROR - Invalid token")
         # Returns false on error (invalid token)
         return "false"
    
@@ -52,6 +53,7 @@ async def index():
     # Send message to channel
     await channel.send(message)
     
+    print ("[LOG] SUCCESS")
     # Returns true on success
     return "true"
 
