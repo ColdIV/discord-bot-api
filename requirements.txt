@@ -6,6 +6,7 @@ blinker==1.4
 chardet==4.0.0
 click==8.0.3
 colorama==0.4.4
+configparser==5.2.0
 discord==1.7.3
 discord.py==1.7.3
 h11==0.12.0
