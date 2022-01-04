@@ -19,7 +19,7 @@ if os.path.isfile(API_TOKEN_FILE):
     with open(API_TOKEN_FILE, 'r') as file:
         API_TOKEN = file.read()     
 
-print ("[LOG] API_TOKEN USED: '" + API_TOKEN + "'")
+# print ("[LOG] API_TOKEN USED: '" + API_TOKEN + "'")
 
 # Create bot "client"
 client = commands.Bot(command_prefix = '!')
@@ -41,8 +41,8 @@ async def index():
     token = (await request.form)["token"]
     message = (await request.form)["message"]
     
-    print ("[LOG] TOKEN: '" + token + "'")
-    print ("[LOG] MESSAGE: '" + message + "'")
+    # print ("[LOG] TOKEN: '" + token + "'")
+    print ("[LOG] MESSAGE SENT: '" + message + "'")
     
     if token != API_TOKEN:
         print ("[LOG] ERROR - Invalid token")
