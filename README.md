@@ -3,9 +3,9 @@
 
 *Which means you may have to compile Python yourself on RaspbianOS*
 
-This API enables you to trigger a bot sending posts to a discord channel by sending POST-requests to a website.
+This API enables you to trigger a bot sending posts to a Discord channel by sending POST requests to a website.
 
-GET-requests are not implemented but easily added.
+GET requests are not implemented but easily added.
 
 # Setup
     git clone https://github.com/ColdIV/discord-bot-api
