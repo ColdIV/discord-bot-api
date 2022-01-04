@@ -21,10 +21,6 @@ client = commands.Bot(command_prefix = '!')
 # app = Webserver
 app = Quart(__name__)
 
-@app.route('/api-test', methods=['GET'])
-async def apiTest():
-    return "<form action='/' method=post><input name=token value=testtoken><input name=message value=testmessage><input type=submit value=submit></form>"
-    
 @app.route('/', methods=['GET'])
 async def indexGet():
     return "false"
