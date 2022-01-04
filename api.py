@@ -2,24 +2,18 @@ import discord
 from discord.ext import commands, tasks
 from quart import Quart, request
 import os
+import configparser
 
-# Read bot token from file
-BOT_TOKEN = ""
-BOT_TOKEN_FILE = 'BOT_TOKEN'
-import os.path
-if os.path.isfile(BOT_TOKEN_FILE):
-    with open(BOT_TOKEN_FILE, 'r') as file:
-        BOT_TOKEN = file.read()
+config = configparser.RawConfigParser()
+config.read('.config')
 
-# Read api token from file   
-API_TOKEN = ""
-API_TOKEN_FILE = 'API_TOKEN'
-import os.path
-if os.path.isfile(API_TOKEN_FILE):
-    with open(API_TOKEN_FILE, 'r') as file:
-        API_TOKEN = file.read()     
+# Read tokens and channel id from config
+BOT_TOKEN = config['discord']['TOKEN']
+CHANNEL_ID = config['discord']['CHANNEL_ID']
+API_TOKEN = config['api']['TOKEN']
 
-# print ("[LOG] API_TOKEN USED: '" + API_TOKEN + "'")
+# Convert CHANNEL_ID to Number
+CHANNEL_ID = int(CHANNEL_ID)
 
 # Create bot "client"
 client = commands.Bot(command_prefix = '!')
@@ -51,7 +45,7 @@ async def index():
    
     global client
     # Parameter is Channel ID
-    channel = client.get_channel(926830382769393685)
+    channel = client.get_channel(CHANNEL_ID)
     # Send message to channel
     await channel.send(message)
     
