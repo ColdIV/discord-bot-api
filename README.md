@@ -1,34 +1,43 @@
 # API
-**Requires Python 3.7 or higher**
+**Requires Python 3.7 or higher!**
 
 *Which means you may have to compile Python yourself on RaspbianOS*
+
+This API enables you to trigger a bot sending posts to a discord channel by sending POST-requests to a website.
+
+GET-requests are not implemented but easily added.
 
 # Setup
     git clone https://github.com/ColdIV/discord-bot-api
     cd discord-bot-api
     virtualenv env
-## Linux
+### Linux
     source env/bin/activate
-## Windows
+### Windows
     .\env\Scripts\activate
-# Install requirements    
+### Install requirements    
     pip3 install -r requirements.txt
-# Create token files
-BOT_TOKEN
+### Add tokens and channel id
+Rename `.config.example` to `.config` and fill in the tokens and channel id.
 
-    <token of the discord bot>
-API_TOKEN
+You should then have a file that looks something like this:
 
-    <token of the api>
-# Run dev
+    [api]
+    TOKEN=EXAMPLE_API_TOKEN
+    
+    [discord]
+    TOKEN=EXAMPLE_DISCORD_BOT_TOKEN
+    CHANNEL_ID=EXAMPLE_DISCORD_CHANNEL_ID
+
+## Run dev
     python3 api.py
-# Run prod
+## Run prod
     hypercorn api:app
     
 # Usage
 Send a post request with 
 
-    token=<token of the api>&message=<message you want to post in discord>
+    token=EXAMPLE_DISCORD_BOT_TOKEN&message=EXAMPLE_MESSAGE
 
 
-The API Token should, of course, never be published. :)
+The tokens should, of course, never be published. :)
