@@ -7,47 +7,40 @@ import configparser
 config = configparser.RawConfigParser()
 config.read('.config')
 
-# Read tokens and channel id from config
 BOT_TOKEN = config['discord']['TOKEN']
 CHANNEL_ID = config['discord']['CHANNEL_ID']
 API_TOKEN = config['api']['TOKEN']
 
-# Convert CHANNEL_ID to Number
 CHANNEL_ID = int(CHANNEL_ID)
 
-# Create bot "client"
 client = commands.Bot(command_prefix = '!')
 
-# app = Webserver
 app = Quart(__name__)
+
+
+async def sendMessage (token, message):
+    if token != API_TOKEN:
+        return '{ "success": false }'
+    
+    global client
+    channel = client.get_channel(CHANNEL_ID)
+    await channel.send(message)
+
+    return '{ "success": true }'
 
 @app.route('/', methods=['GET'])
 async def indexGet():
-    return "false"
+    token = request.args.get('token')
+    message = request.args.get('message')
+
+    return await sendMessage(token, message)
     
 @app.route('/', methods=['POST'])
 async def index():
-    # Get token and message from form
-    token = (await request.form)["token"]
-    message = (await request.form)["message"]
-    
-    # print ("[LOG] TOKEN: '" + token + "'")
-    print ("[LOG] MESSAGE SENT: '" + message + "'")
-    
-    if token != API_TOKEN:
-        print ("[LOG] ERROR - Invalid token")
-        # Returns false on error (invalid token)
-        return "false"
-   
-    global client
-    # Parameter is Channel ID
-    channel = client.get_channel(CHANNEL_ID)
-    # Send message to channel
-    await channel.send(message)
-    
-    print ("[LOG] SUCCESS")
-    # Returns true on success
-    return "true"
+    token = (await request.form)['token']
+    message = (await request.form)['message']
+
+    return await sendMessage(token, message)
 
 @client.event
 async def on_ready():
