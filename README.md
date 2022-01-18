@@ -3,9 +3,8 @@
 
 *Which means you may have to compile Python yourself on RaspbianOS*
 
-This API enables you to trigger a bot sending posts to a Discord channel by sending POST requests to a website.
+This API enables you to trigger a bot sending messages to a Discord channel by sending a request to a website.
 
-GET requests are not implemented but easily added.
 
 # Setup
     git clone https://github.com/ColdIV/discord-bot-api
@@ -32,12 +31,14 @@ You should then have a file that looks something like this:
 ## Run dev
     python3 api.py
 ## Run prod
+**Note:** This program has never been tested properly in an production environment. Use at own risk!
+
     hypercorn api:app
     
 # Usage
-Send a post request with 
+Send a request like this:
 
-    token=EXAMPLE_DISCORD_BOT_TOKEN&message=EXAMPLE_MESSAGE
+    https://api.example.com/?token=EXAMPLE_DISCORD_BOT_TOKEN&message=EXAMPLE_MESSAGE
 
 
 The tokens should, of course, never be published. :)
