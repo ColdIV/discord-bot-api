@@ -46,8 +46,6 @@ async def index():
 async def on_ready():
     await client.wait_until_ready()
     print ('Bot is ready.')
-    print ('Setting presence...')
-    await client.change_presence(status=discord.Status.idle)
     print ('Done.')
     
     # Run Webserver
