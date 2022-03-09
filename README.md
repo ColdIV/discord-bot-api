@@ -38,7 +38,7 @@ You should then have a file that looks something like this:
 # Usage
 Send a request like this:
 
-    https://api.example.com/?token=EXAMPLE_DISCORD_BOT_TOKEN&message=EXAMPLE_MESSAGE
+    https://api.example.com/?token=EXAMPLE_API_TOKEN&message=EXAMPLE_MESSAGE
 
 
 The tokens should, of course, never be published. :)
