@@ -1,4 +1,9 @@
 # API
+
+**I now use discords webhooks instead. ;)**
+---
+
+
 **Requires Python 3.7 or higher!**
 
 *Which means you may have to compile Python yourself on RaspbianOS*
