@@ -1,6 +1,8 @@
 # API
+**Use at your own risk.**
 
-**I now use discords webhooks instead. ;)**
+This was a project where I tried to control a discord bot via a webinterface. It somewhat worked but is not secure and for my use case discord webhooks where sufficient so I stopped working on this.
+
 ---
 
 
